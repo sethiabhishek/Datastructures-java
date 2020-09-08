@@ -1,5 +1,8 @@
 package C;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * You are given a sequence of integers of length 𝑛 and integer number 𝑘. You should print any integer number 𝑥 in the range of [1;109]
  * (i.e. 1≤𝑥≤109)
@@ -40,6 +43,36 @@ package C;
 public class LessOrEqual {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] details = sc.nextLine().split(" ");
+        int numbers = Integer.parseInt(details[0]);
+        int k = Integer.parseInt(details[1]);
+        List<Integer> input = Arrays.stream(sc.nextLine().split(" ")).
+                map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+        Collections.sort(input);
+        int min = input.get(0);
+        int max = input.get(numbers -1);
+        if(k>0){
+            if(k == numbers){
+                System.out.println(input.get(k-1));
+            }else{
+                int keyAtIndexK = input.get(k-1);
+                int keyAtIndexKPlusOne = input.get(k);
+                if(keyAtIndexKPlusOne > keyAtIndexK){
+                    System.out.println(keyAtIndexK);
+                }else{
+                    System.out.println(-1);
+                }
+            }
+        }else{
+            if(min > 1){
+              System.out.print(min -1);
+            }else {
+                System.out.println(-1);
+            }
+        }
+
+
 
     }
 }
