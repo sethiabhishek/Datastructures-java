@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * PROBLEM TO SOLVE OR FIND THE MAX AREA BETWEEN ELEMENTS OF AN ARRAY, CONSIDER THE NUMBER TO BE A SQUARE WITH SAME
+ * HEIGHT AND WIDTH
+ */
+
 public class MaxArea {
         public static void main (String args[]) {
             //Scanner sc = new Scanner(System.in);

@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * simple use case of how to use frequency array to find out the missing number
+ */
 public class MissingNumber {
 
     public static void main (String args[]) {

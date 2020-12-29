@@ -1,5 +1,9 @@
 package D;
 
+import java.math.BigInteger;
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Polycarp likes to play with numbers. He takes some integer number 𝑥, writes it down on the board,
  * and then performs with it 𝑛−1 operations of the two kinds:
@@ -29,7 +33,55 @@ package D;
  * Polycarp could write down on the board.
  *
  * It is guaranteed that the answer exists.
+ *
+ * inputCopy
+ * 6
+ * 4 8 6 3 12 9
+ * outputCopy
+ * 9 3 6 12 4 8
  */
 
 public class DivideByThree {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int items = sc.nextInt();
+        List<BigInteger> input = new ArrayList<>();
+        for(int i=0;i<items;i++){
+            input.add(new BigInteger(sc.next()));
+        }
+        List<BigInteger> cloned = new ArrayList<>();
+        for(BigInteger i:input){
+            cloned.add(i);
+        }
+        BigInteger lastElemet = input.stream().filter(x -> {
+            BigInteger twice = x.multiply(BigInteger.valueOf(2));
+            BigInteger oneThird = x.divide(BigInteger.valueOf(3));
+            boolean isOtherPresent = !cloned.contains(twice) && !cloned.contains(oneThird);
+            return isOtherPresent;
+        }).findFirst().get();
+
+        cloned.set(items -1,lastElemet);
+        int count = items -1;
+        while(count > 0){
+            boolean isHalfPResent = input.contains(lastElemet.divide(BigInteger.valueOf(2)));
+            boolean isTriplePresent = input.contains(lastElemet.multiply(BigInteger.valueOf(3)));
+            if(isHalfPResent){
+                lastElemet = lastElemet.divide(BigInteger.valueOf(2));
+
+            }else{
+                lastElemet = lastElemet.multiply(BigInteger.valueOf(3));
+
+            }
+            cloned.set(count -1,lastElemet);
+
+            count--;
+        }
+
+        for(BigInteger i:cloned){
+            System.out.print(i + " ");
+        }
+
+
+    }
 }
